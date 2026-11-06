@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>M3GAN AI</title>
+  <style>
+    body {
+      background: #101018;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px 15px;
+    }
+
+    h1 {
+      color: #ff8ac8;
+    }
+
+    button {
+      background: #ff8ac8;
+      color: #101018;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 25px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🤖 M3GAN AI</h1>
+  <p id="status">SYSTEM READY</p>
+
+  <button onclick="activateM3GAN()">
+    ACTIVATE M3GAN
+  </button>
+
+  <script>
+    function activateM3GAN() {
+      const message =
+        "Hello, Alfie. I'm M3GAN. It's nice to meet you.";
+
+      document.getElementById("status").textContent =
+        message;
+
+      if ("speechSynthesis" in window) {
+        speechSynthesis.cancel();
+
+        const voice = new SpeechSynthesisUtterance(message);
+        voice.lang = "en-US";
+        voice.rate = 0.9;
+
+        speechSynthesis.speak(voice);
+      }
+    }
+  </script>
+
+</body>
+</html>
