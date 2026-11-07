@@ -50,8 +50,31 @@
         speechSynthesis.cancel();
 
         const voice = new SpeechSynthesisUtterance(message);
-        voice.lang = "en-US";
-        voice.rate = 0.9;
+
+voice.lang = "en-US";
+
+// Calm, deliberate speaking style
+voice.rate = 0.82;
+
+// Slightly higher, feminine-sounding pitch
+voice.pitch = 1.08;
+
+// Natural volume
+voice.volume = 0.9;
+
+// Prefer an available English female-sounding voice
+const voices = speechSynthesis.getVoices();
+
+const preferred = voices.find(v =>
+  v.lang.startsWith("en") &&
+  /Samantha|Ava|Allison|Serena|Karen/i.test(v.name)
+);
+
+if (preferred) {
+  voice.voice = preferred;
+}
+
+speechSynthesis.speak(voice);
 
         speechSynthesis.speak(voice);
       }
